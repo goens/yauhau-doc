@@ -46,7 +46,7 @@ concurrent system calls, and leverage difficult-to use synchronization methods, 
 
 
 ![Microservice-Based Architectures](/figures/microservice-challenge.png)
-Format: ![Alt Text](Internet services are compsed of hundreds of interlinked microservices)
+Internet services are compsed of hundreds of interlinked microservices
 
 
 
