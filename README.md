@@ -46,7 +46,7 @@ concurrent system calls, and leverage difficult-to use synchronization methods, 
 
 
 ![Microservice-Based Architectures](/figures/microservice-challenge.png)
-Internet services are compsed of hundreds of interlinked microservices
+Internet services are compsed of hundreds of interlinked microservices (source: http://contiv.github.io/articles/microservice-challenge-b139e7b3.jpg)
 
 
 
