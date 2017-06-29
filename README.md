@@ -1,39 +1,39 @@
-[//]: #<div id="table-of-contents">
-[//]: #<h2>Table of Contents</h2>
-[//]: #<div id="text-table-of-contents">
-[//]: #<ul class="nav navbar-nav">
-[//]: #<li><a href="#sec-1">1. The Problem</a>
-[//]: #<ul>
-[//]: #<li><a href="#sec-1-1">1.1. Microservices:</a></li>
-[//]: #<li><a href="#sec-1-2">1.2. Handling I/O:</a></li>
-[//]: #<li><a href="#sec-1-3">1.3. Getting this right: very complex code</a></li>
-[//]: #</ul>
-[//]: #</li>
-[//]: #<li><a href="#sec-2">2. Ÿauhau</a>
-[//]: #<ul>
-[//]: #<li><a href="#sec-2-1">2.1. Simple programming</a></li>
-[//]: #<li><a href="#sec-2-2">2.2. Efficient execution</a></li>
-[//]: #<li><a href="#sec-2-3">2.3. Example!</a></li>
-[//]: #</ul>
-[//]: #</li>
-[//]: #<li><a href="#sec-3">3. How does it work?</a>
-[//]: #<ul>
-[//]: #<li><a href="#sec-3-1">3.1. Ohua: Implicit concurrency and parallelism through dataflow</a></li>
-[//]: #<li><a href="#sec-3-2">3.2. Ÿauhau: Dataflow graph rewrites</a></li>
-[//]: #<li><a href="#sec-3-3">3.3. Example!</a></li>
-[//]: #</ul>
-[//]: #</li>
-[//]: #<li><a href="#sec-4">4. Some benchmarks</a>
-[//]: #<ul>
-[//]: #<li><a href="#sec-4-1">4.1. Baseline Comparison</a></li>
-[//]: #<li><a href="#sec-4-2">4.2. Code Style</a></li>
-[//]: #<li><a href="#sec-4-3">4.3. I/O imbalance</a></li>
-[//]: #<li><a href="#sec-4-4">4.4. Modular designs</a></li>
-[//]: #</ul>
-[//]: #</li>
-[//]: #</ul>
-[//]: #</div>
-[//]: #</div>
+[comment]: <> ( <div id="table-of-contents">)
+[comment]: <> ( <h2>Table of Contents</h2>)
+[comment]: <> ( <div id="text-table-of-contents">)
+[comment]: <> ( <ul class="nav navbar-nav">)
+[comment]: <> ( <li><a href="#sec-1">1. The Problem</a>)
+[comment]: <> ( <ul>)
+[comment]: <> ( <li><a href="#sec-1-1">1.1. Microservices:</a></li>)
+[comment]: <> ( <li><a href="#sec-1-2">1.2. Handling I/O:</a></li>)
+[comment]: <> ( <li><a href="#sec-1-3">1.3. Getting this right: very complex code</a></li>)
+[comment]: <> ( </ul>)
+[comment]: <> ( </li>)
+[comment]: <> ( <li><a href="#sec-2">2. Ÿauhau</a>)
+[comment]: <> ( <ul>)
+[comment]: <> ( <li><a href="#sec-2-1">2.1. Simple programming</a></li>)
+[comment]: <> ( <li><a href="#sec-2-2">2.2. Efficient execution</a></li>)
+[comment]: <> ( <li><a href="#sec-2-3">2.3. Example!</a></li>)
+[comment]: <> ( </ul>)
+[comment]: <> ( </li>)
+[comment]: <> ( <li><a href="#sec-3">3. How does it work?</a>)
+[comment]: <> ( <ul>)
+[comment]: <> ( <li><a href="#sec-3-1">3.1. Ohua: Implicit concurrency and parallelism through dataflow</a></li>)
+[comment]: <> ( <li><a href="#sec-3-2">3.2. Ÿauhau: Dataflow graph rewrites</a></li>)
+[comment]: <> ( <li><a href="#sec-3-3">3.3. Example!</a></li>)
+[comment]: <> ( </ul>)
+[comment]: <> ( </li>)
+[comment]: <> ( <li><a href="#sec-4">4. Some benchmarks</a>)
+[comment]: <> ( <ul>)
+[comment]: <> ( <li><a href="#sec-4-1">4.1. Baseline Comparison</a></li>)
+[comment]: <> ( <li><a href="#sec-4-2">4.2. Code Style</a></li>)
+[comment]: <> ( <li><a href="#sec-4-3">4.3. I/O imbalance</a></li>)
+[comment]: <> ( <li><a href="#sec-4-4">4.4. Modular designs</a></li>)
+[comment]: <> ( </ul>)
+[comment]: <> ( </li>)
+[comment]: <> ( </ul>)
+[comment]: <> ( </div>)
+[comment]: <> ( </div>)
 
 # The Problem<a id="sec-1" name="sec-1"></a>
 
