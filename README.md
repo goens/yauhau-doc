@@ -109,6 +109,7 @@ We compare Ÿauhau to Haxl, Muse, and for reference, to a sequential execution. 
 Ÿauhau conistently performs better than all other systems, or at least as good in all cases.
 
 ![Baseline comparison](/figures/baseline.pdf.png)
+
 Comparison of Ÿauhau, Muse and Haxl. Ÿauhau conistently outperforms other frameworks, especially in more complex applications (more "levels" in the graph).
 
 ## Code Style<a id="sec-4-2" name="sec-4-2"></a>
@@ -117,6 +118,7 @@ Haxl and Muse allow for different styles of coding, an "Applicative" style (name
 which achieves the best performance of all systems, independent of the code style.
 
 ![Code-style comparison](/figures/monad_applicative.pdf.png)
+
 Ÿauhau's performance is independent of the code style, unlike other frameworks.
 
 ## I/O imbalance<a id="sec-4-3" name="sec-4-3"></a>
@@ -126,6 +128,7 @@ This happens because these systems execute I/O calls in rounds, and block the ex
 allows a Ÿauhau program to continue executing everything that can be executed while waiting for a particularly laggy I/O call to finish.
 
 ![Concurrent Execution](/figures/io-imbalance.pdf.png)
+
 Ÿauhau's execution is not blocked by a microservice with large latency, unlike other frameworks.
 
 ## Modular designs<a id="sec-4-4" name="sec-4-4"></a>
@@ -137,4 +140,5 @@ with different probabilites. The result is an application that has more calls to
 Haxl and Muse struggle with more function calls.
 
 ![Batching Across Function Borders](/figures/functions.pdf.png)
+
 Ÿauhau understands and considers dependencies across functions, where others struggle.
