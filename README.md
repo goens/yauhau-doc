@@ -1,7 +1,7 @@
 <div id="table-of-contents">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
-<ul>
+<ul class="nav navbar-nav">
 <li><a href="#sec-1">1. The Problem</a>
 <ul>
 <li><a href="#sec-1-1">1.1. Microservices:</a></li>
@@ -43,6 +43,12 @@ The software architecture of most large internet services, if not all, consists 
 Systems nowadays consist of several such microservices, interconnected by large hierarchies of dependencies.
 In order to program software in these microservice-oriented architectures, software engineers need to use complex libraries to manage the interaction. If performance and latency are vital, as is in many cases, programmers must also implement efficient
 concurrent system calls, and leverage difficult-to use synchronization methods, like locks or futures.
+
+
+![Microservice-Based Architectures](/figures/microservice-challenge.png)
+Format: ![Alt Text](Internet services are compsed of hundreds of interlinked microservices)
+
+
 
 ## Handling I/O:<a id="sec-1-2" name="sec-1-2"></a>
 
