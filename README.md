@@ -62,7 +62,7 @@ Manage the different microservice protocols, while writing code that execute cor
 To improve efficiency, the developer has to explicitly manage I/O calls and concurrency, at the cost of code readability and maintainability.
 On the one hand, blocking (synchronous) I/O calls produce the most readable and maintainable code but result in a sequential execution of all requests.
 On the other hand, non-blocking (asynchronous) I/O calls execute remote services in parallel but require the use of concurrency constructs such as threads or events.
-Threads use locks which can introduce deadlocks, while events clu er the code signi cantly.  us, both approaches add additional complexity and result in code that is much less clean and concise.
+Threads use locks which can introduce deadlocks, while events clu er the code significantly. Thus, both approaches add additional complexity and result in code that is much less clean and concise.
 
 # Ÿauhau<a id="sec-2" name="sec-2"></a>
 
@@ -70,38 +70,37 @@ To overcome these problems, we present Ÿauhau. It allows enginieers to write si
 
 ## Simple programming<a id="sec-2-1" name="sec-2-1"></a>
 
-Ÿauhau is an extension to the Ohua framework. Ohua works on Closure, a dialect of Lisp for the JVM. Programs written with Ÿauhau are simple because of the declarative, functional nature of LISP.
+Ÿauhau is an extension to the Ohua framework. Ohua works on Clojure, a dialect of Lisp for the JVM. Programs written with Ÿauhau are simple because of the declarative, functional nature of LISP.
 A programmer does not need to think about what is executed when, nor label dependencies or introduce complex constructs for concurrency and parallelism.
 Instead, programmers using Ÿauhau only need to write their alorithm in a simple, declarative style and the complier takes care of squeezing out efficiency when executing.
 
 ## Efficient execution<a id="sec-2-2" name="sec-2-2"></a>
 
 When the Ohua compiler reads an Ohua program, it uses analysis methods to understand what can be executed concurrently, and what cannot. It does so by leveraging the declarative nature of the programs, without any explicit imput from the programmer.
-Ohua automatically executes applications using all the concurrency and parallelism extracted, managing synchronization itself. On top of Ohua, the Ÿauhau extensions understand which calls perform I/O and automatically batch all I/O calls to the same source, if
-it allows batching. In this way, Ÿauhau allows programmers to write simple code which automatically works with close to maximal I/O efficiency.
+Ohua automatically executes applications using all the concurrency and parallelism extracted, managing synchronization itself. On top of Ohua, the Ÿauhau extensions understand which calls perform I/O and automatically batch all I/O calls to the same source, if it allows batching. In this way, Ÿauhau allows programmers to write simple code which automatically works with close to maximal I/O efficiency.
 
-## Example!<a id="sec-2-3" name="sec-2-3"></a>
+## Example: Loading the contents for a blog<a id="sec-2-3" name="sec-2-3"></a>
 
-# How does it work?<a id="sec-3" name="sec-3"></a>
-
-## Ohua: Implicit concurrency and parallelism through dataflow<a id="sec-3-1" name="sec-3-1"></a>
-
-Ohua compiles a Clojure-style program into a so-called dataflow graph. Such a graph represents the different functions and algorithms in the computation and the dependencies between the produced data. (Example).
-
-## Ÿauhau: Dataflow graph rewrites<a id="sec-3-2" name="sec-3-2"></a>
-
-In order to execute I/O calls efficiently, Ÿauhau uses a series of rewrites to the dataflow graph of Ohua, that allow it to batch I/O calls to the same source whenever possible, while mantaining the functionality of the program. 
-
-
-## Example!<a id="sec-3-3" name="sec-3-3"></a>
+Consider a service that loads the webpage for a blog written as an Ohua algorithm:
 ```clojure
 ; Algorithm definition:
 ;(delalgo algo-name     [args]   (fn-call ))
 
+(defalgo blog [] 
+  (let [lp  (left-pane )
+        mp  (main-pane )
+        rlp (render-left-pane lp)
+        mlp (redner-main-pane mp)]
+    (render-page rlp mlp))
+```
+Note that the only difference in terms of programming style is the use of `defalgo` to declare algorithm instead of `defn` to declare functions. Our blog service now needs to request the data, such as the posts on the blog and their according meta data from another service, i.e., it performs I/O. In Ÿauhau, we write this as follows:
+```clojure
 (defalgo getPostIds     []       (fetch (req-post-ids )))
 (defalgo getPostInfo    [postId] (fetch (req-post-info postId)))
 (defalgo getPostContent [postId] (fetch (req-post-content postId)))
-
+```
+The algorithms inside the `blog` such as the one to compute the content of the main panel can now use these calls:
+```clojure
 (defalgo main-pane []
   (let [postIds (getPostIds )
         postInfos (smap getPostInfo postIds)
@@ -110,10 +109,39 @@ In order to execute I/O calls efficiently, Ÿauhau uses a series of rewrites to 
         latestPostContents (smap getPostContent lastestPostIds)] 
        (zip latestPostInfos latestPostContents)))
 ```
+The (stateful) functions that the algorithm uses maybe defined either in Java as a function inside a class
+```java
+public class LatestPosts {
+  @defsfn
+  public List<PostId> getIds(List<PostInfo> postInfos){
+    return postInfos.stream().map(PostInfo::getId).collect(Collectors.toList());
+  }
+}
+```
+or in Clojure as a normal function
+```clojure
+(defn take-latest [^Iterable posts 
+                   ^Number n]
+  (let [res (take n (sort-by (fn [post] (.getDate post)) posts))]
+    res))
+```
+or as a function inside a Scala class. Choose whether language you prefer.
 
+
+
+# How does it work?<a id="sec-3" name="sec-3"></a>
+
+## Ohua: Implicit concurrency and parallelism through dataflow<a id="sec-3-1" name="sec-3-1"></a>
+
+Ohua compiles a Clojure-style program into a so-called dataflow graph. Such a graph represents the different functions and algorithms in the computation and the dependencies between the produced data.
 
 ![Dataflow graph for the blog example](/figures/blog-flow-graph-extended.pdf.png)
 The Dataflow Graph Generated by Ohua for the Blog Example
+
+## Ÿauhau: Dataflow graph rewrites<a id="sec-3-2" name="sec-3-2"></a>
+
+In order to execute I/O calls efficiently, Ÿauhau uses a series of rewrites to the dataflow graph of Ohua, that allow it to batch I/O calls to the same source whenever possible, while mantaining the functionality of the program. 
+
 
 # Some benchmarks<a id="sec-4" name="sec-4"></a>
 
