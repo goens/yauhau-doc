@@ -141,6 +141,12 @@ The above graph depicts the use of the algorithms that fetch data from other ser
 Note for example that 3 requests would be issued to get the ids of the posts because the `getPostIds` algorithm is called in 3 different parts (`popular-posts`, `topics`, `main-pane`) of the program.
 Ÿauhau instead only issues a single request.
 
+There is an old implementation for yauhau in Java, however we have made a revised implementation which curretly only works with Haskell.
+We do intend to provide a Java/Clojure compatible adapter soon.
+
+For now you can find the Haskell yauhau project [here](https://github.com/ohua-dev/yauhau) and the blog example described in the section before [here](https://github.com/ohua-dev/yauhau/blob/master/examples/blog.hs).
+The `examples` directory also contains a readme on how to run and experiment with the blog example.
+
 # How does it work?<a id="sec-3" name="sec-3"></a>
 
 ## Ohua: Implicit concurrency and parallelism through dataflow<a id="sec-3-1" name="sec-3-1"></a>
