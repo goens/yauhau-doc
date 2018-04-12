@@ -94,15 +94,17 @@ maximal I/O efficiency.
 Consider a service that loads the webpage for a blog written as an Ohua
 algorithm:
 
-    ; Algorithm definition:
-    ;(delalgo algo-name     [args]   (fn-call ))
-    
-    (defalgo blog []
-      (let [lp  (left-pane )
-            mp  (main-pane )
-            rlp (render-left-pane lp)
-            mlp (redner-main-pane mp)]
-        (render-page rlp mlp))
+```clj
+; Algorithm definition:
+;(delalgo algo-name     [args]   (fn-call ))
+
+(defalgo blog []
+  (let [lp  (left-pane )
+        mp  (main-pane )
+        rlp (render-left-pane lp)
+        mlp (redner-main-pane mp)]
+    (render-page rlp mlp))
+```
 
 Note that the only difference in terms of programming style is the use
 of `defalgo` to declare an algorithm instead of `defn` to declare a
@@ -110,37 +112,45 @@ function. Our blog service now needs to request data, such as the posts
 on the blog and their according meta data from another service, i.e., it
 performs I/O. In Ÿauhau, we write this as follows:
 
-    (defalgo getPostIds     []       (fetch (req-post-ids )))
-    (defalgo getPostInfo    [postId] (fetch (req-post-info postId)))
-    (defalgo getPostContent [postId] (fetch (req-post-content postId)))
+```clj
+(defalgo getPostIds     []       (fetch (req-post-ids )))
+(defalgo getPostInfo    [postId] (fetch (req-post-info postId)))
+(defalgo getPostContent [postId] (fetch (req-post-content postId)))
+```
 
 The algorithms inside the `blog` such as the one to compute the content
 of the main panel can now use these calls:
 
-    (defalgo main-pane []
-      (let [postIds (getPostIds )
-            postInfos (smap getPostInfo postIds)
-            latestPostInfos (take-latest postInfos 10)
-            latestPostIds (get-ids latestPostInfos)
-            latestPostContents (smap getPostContent latestPostIds)]
-           (zip latestPostInfos latestPostContents)))
+```clj
+(defalgo main-pane []
+  (let [postIds (getPostIds )
+		postInfos (smap getPostInfo postIds)
+        latestPostInfos (take-latest postInfos 10)
+        latestPostIds (get-ids latestPostInfos)
+        latestPostContents (smap getPostContent latestPostIds)]
+    (zip latestPostInfos latestPostContents)))
+```
 
 The (stateful) functions that the algorithm uses maybe defined either in
 Java as a function inside a class
 
-    public class LatestPosts {
-      @defsfn
-      public List<PostId> getIds(List<PostInfo> postInfos){
+```java
+public class LatestPosts {
+	@defsfn
+	public List<PostId> getIds(List<PostInfo> postInfos){
         return postInfos.stream().map(PostInfo::getId).collect(Collectors.toList());
-      }
-    }
+	}
+}
+```
 
 or in Clojure as a normal function
 
-    (defn take-latest [^Iterable posts
-                       ^Number n]
-      (let [res (take n (sort-by (fn [post] (.getDate post)) posts))]
-        res))
+```clj
+(defn take-latest [^Iterable posts
+                   ^Number n]
+  (let [res (take n (sort-by (fn [post] (.getDate post)) posts))]
+    res))
+```
 
 or as a function inside a Scala class. Choose whatever language you
 prefer.
