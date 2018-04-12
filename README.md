@@ -124,7 +124,7 @@ of the main panel can now use these calls:
 ```clj
 (defalgo main-pane []
   (let [postIds (getPostIds )
-		postInfos (smap getPostInfo postIds)
+        postInfos (smap getPostInfo postIds)
         latestPostInfos (take-latest postInfos 10)
         latestPostIds (get-ids latestPostInfos)
         latestPostContents (smap getPostContent latestPostIds)]
@@ -136,10 +136,10 @@ Java as a function inside a class
 
 ```java
 public class LatestPosts {
-	@defsfn
-	public List<PostId> getIds(List<PostInfo> postInfos){
+    @defsfn
+    public List<PostId> getIds(List<PostInfo> postInfos){
         return postInfos.stream().map(PostInfo::getId).collect(Collectors.toList());
-	}
+    }
 }
 ```
 
