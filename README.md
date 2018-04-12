@@ -1,7 +1,5 @@
 # The Problem<a id="the-problem" name="the-problem"></a>
 
-
-
 ## Microservices:<a id="microservices" name="microservices"></a>
 
 
@@ -17,9 +15,9 @@ programmers must also implement efficient concurrent system calls, and
 leverage difficult-to use synchronization methods, like locks or
 futures.
 
-![img](/figures/microservice-challenge.png) Internet services are composed
+![Microservice challenge](/figures/microservice-challenge.png) Internet services are composed
 of hundreds of interlinked microservices (source:
-![img](//contiv.github.io/articles/microservice-challenge-b139e7b3.jpg))
+[http://contiv.github.io/articles/microservice-challenge-b139e7b3.jpg](http://contiv.github.io/articles/microservice-challenge-b139e7b3.jpg))
 
 ## Handling I/O:<a id="handling-io" name="handling-io"></a>
 
