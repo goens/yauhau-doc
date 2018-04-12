@@ -222,7 +222,7 @@ levels, the larger and more complex the application. Ÿauhau consistently
 performs better than all other systems, or at least as good in all
 cases.
 
-![img](/figures/baseline.pdf.png "Baseline comparison")
+![Baseline Comparison](/figures/baseline.pdf.png)
 
 Comparison of Ÿauhau, Muse and Haxl. Ÿauhau consistently outperforms
 other frameworks, especially in more complex applications (more "levels"
@@ -238,7 +238,7 @@ the graph, results in worst performance. Except for Ÿauhau, which
 achieves the best performance of all systems, independent of the code
 style.
 
-![img](/figures/monad_applicative.pdf.png "Code-style comparison")
+![Codestyle comparison](/figures/monad_applicative.pdf.png)
 
 Ÿauhau's performance is independent of the code style, unlike other
 frameworks.
@@ -254,7 +254,7 @@ in a round have been executed. Not Ÿauhau. The dataflow execution model
 allows a Ÿauhau program to continue executing everything that can be
 executed while waiting for a particularly laggy I/O call to finish.
 
-![img](/figures/io-imbalance.pdf.png "Concurrent Execution")
+![Concurrent execution](/figures/io-imbalance.pdf.png)
 
 Ÿauhau's execution is not blocked by a microservice with large latency,
 unlike other frameworks.
@@ -277,7 +277,7 @@ this does not change the number of calls significantly (it changes at
 all because of the random nature of the experiment), whereas Haxl and
 Muse struggle with more function calls.
 
-![img](/figures/functions.pdf.png "Batching Across Function Borders")
+![Batching Across Function Borders](/figures/functions.pdf.png)
 
 Ÿauhau understands and considers dependencies across functions, where
 others struggle.
